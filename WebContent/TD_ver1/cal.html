@@ -1,0 +1,235 @@
+<html>
+<head>
+<SCRIPT LANGUAGE="JavaScript">
+
+	function doOver() {
+		var el = event.srcElement;
+		cal_Day = el.title;
+
+		if (cal_Day.length > 7) {
+			el.style.borderTopColor = el.style.borderLeftColor = "buttonhighlight";
+			el.style.borderRightColor = el.style.borderBottomColor = "buttonshadow";
+		}
+	}
+
+	function doOut() {
+		var el = event.srcElement;
+		cal_Day = el.title;
+
+		if (cal_Day.length > 7) {
+			el.style.borderColor = "white";
+		}
+	}
+
+	function day2(d) {																// 2�ڸ� ���ڷ� ����
+		var str = new String();
+		
+		if (parseInt(d) < 10) {
+			str = "0" + parseInt(d);
+		} else {
+			str = "" + parseInt(d);
+		}
+		return str;
+	}
+
+	function Show_cal(sYear, sMonth, sDay) {
+		var Months_day = new Array(0,31,28,31,30,31,30,31,31,30,31,30,31)
+		//var Weekday_name = new Array("��", "��", "ȭ", "��", "��", "��", "��");
+		var intThisYear = new Number(), intThisMonth = new Number(), intThisDay = new Number();
+		document.all.cal.innerHTML = "";
+		datToday = new Date();													// ���� ���� ����
+		
+		intThisYear = parseInt(sYear);
+		intThisMonth = parseInt(sMonth);
+		intThisDay = parseInt(sDay);
+		
+		if (intThisYear == 0) intThisYear = datToday.getFullYear();				// ���� ���� ���
+		if (intThisMonth == 0) intThisMonth = parseInt(datToday.getMonth())+1;	// �� ���� ������ ���� -1 �� ���� �ŵ��� ����.
+		if (intThisDay == 0) intThisDay = datToday.getDate();
+		
+		switch(intThisMonth) {
+			case 1:
+					intPrevYear = intThisYear -1;
+					intPrevMonth = 12;
+					intNextYear = intThisYear;
+					intNextMonth = 2;
+					break;
+			case 12:
+					intPrevYear = intThisYear;
+					intPrevMonth = 11;
+					intNextYear = intThisYear + 1;
+					intNextMonth = 1;
+					break;
+			default:
+					intPrevYear = intThisYear;
+					intPrevMonth = parseInt(intThisMonth) - 1;
+					intNextYear = intThisYear;
+					intNextMonth = parseInt(intThisMonth) + 1;
+					break;
+		}
+		intPPyear = intThisYear-1
+		intNNyear = intThisYear+1
+
+		NowThisYear = datToday.getFullYear();										// ���� ��
+		NowThisMonth = datToday.getMonth()+1;										// ���� ��
+		NowThisDay = datToday.getDate();											// ���� ��
+		
+		datFirstDay = new Date(intThisYear, intThisMonth-1, 1);						// ���� ���� 1�Ϸ� ���� ��ü ����(���� 0���� 11������ ����(1������ 12��))
+		intFirstWeekday = datFirstDay.getDay();										// ���� �� 1���� ������ ���� (0:�Ͽ���, 1:������)
+		
+		intSecondWeekday = intFirstWeekday;
+		intThirdWeekday = intFirstWeekday;
+		
+		datThisDay = new Date(intThisYear, intThisMonth, intThisDay);				// �Ѿ�� ���� ���� ����
+		intThisWeekday = datThisDay.getDay();										// �Ѿ�� ������ �� ����
+
+		//varThisWeekday = Weekday_name[intThisWeekday];								// ���� ���� ����
+		
+		intPrintDay = 1;																// ���� ���� ����
+		secondPrintDay = 1;
+		thirdPrintDay = 1;
+
+		Stop_Flag = 0
+		
+		if ((intThisYear % 4)==0) {													// 4�⸶�� 1���̸� (��γ����� ��������)
+			if ((intThisYear % 100) == 0) {
+				if ((intThisYear % 400) == 0) {
+					Months_day[2] = 29;
+				}
+			} else {
+				Months_day[2] = 29;
+			}
+		}
+		intLastDay = Months_day[intThisMonth];										// ������ ���� ����
+
+		Cal_HTML = "<table id=Cal_Table border=0 bgcolor='#f4f4f4' cellpadding=1 cellspacing=1 width=100% onmouseover='doOver()' onmouseout='doOut()' style='font-size : 12;font-family:����;'>";
+		Cal_HTML += "<tr align=center bgcolor='#f4f4f4'>";
+		Cal_HTML += "<td colspan=7 align=center>";
+		Cal_HTML += "<a style='cursor:hand;' OnClick='Show_cal("+intPPyear+","+intThisMonth+","+intThisDay+");'>��</a>";
+		Cal_HTML += "&nbsp;&nbsp;<a style='cursor:hand;' OnClick='Show_cal("+intPrevYear+","+intPrevMonth+","+intThisDay+");'>&lt;</a> ";
+		Cal_HTML += intThisYear +"�� "+ intThisMonth +"��";
+		Cal_HTML += " <a style='cursor:hand;' OnClick='Show_cal("+intNextYear+","+intNextMonth+","+intThisDay+");'>&gt;</a>";
+		Cal_HTML += "&nbsp;&nbsp;<a style='cursor:hand;' OnClick='Show_cal("+intNNyear+","+intThisMonth+","+intThisDay+");'>��</a>";
+		Cal_HTML += "</td></tr>";
+		Cal_HTML += "<tr align=center bgcolor='#87B3D6' style='color:#2065DA;' >";
+		Cal_HTML += "<td style='padding-top:3px;'><font color=black>��</td><td style='padding-top:3px;'><font color=black>��</td><td style='padding-top:3px;'><font color=black>ȭ</td><td style='padding-top:3px;'><font color=black>��</td><td style='padding-top:3px;'><font color=black>��</td><td style='padding-top:3px;'><font color=black>��</td><td style='padding-top:3px;'><font color=black>��</td></font>";
+		Cal_HTML += "</tr>";
+			
+		for (intLoopWeek=1; intLoopWeek < 7; intLoopWeek++) {						// �ִ��� ���� ����, �ִ� 6��
+			Cal_HTML += "<tr align=right bgcolor='white'>"
+			for (intLoopDay=1; intLoopDay <= 7; intLoopDay++) {						// ���ϴ��� ���� ����, �Ͽ��� ����
+				if (intThirdWeekday > 0) {											// ù�� �������� 1���� ũ��
+					Cal_HTML += "<td>";
+					intThirdWeekday--;
+				} else {
+					if (thirdPrintDay > intLastDay) {								// �Է� ��¦ �������� ũ�ٸ�
+						Cal_HTML += "<td>";
+					} else {														// �Է³�¥�� ������� �ش� �Ǹ�
+						Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-"+day2(intThisMonth).toString()+"-"+day2(thirdPrintDay).toString()+" style=\"cursor:Hand;border:1px solid white;";
+						if (intThisYear == NowThisYear && intThisMonth==NowThisMonth && thirdPrintDay==intThisDay) {
+							Cal_HTML += "background-color:#C6F2ED;";
+						}
+						
+						switch(intLoopDay) {
+							case 1:													// �Ͽ����̸� ���� ������
+								Cal_HTML += "color:red;"
+								break;
+							//case 7:
+							//	Cal_HTML += "color:blue;"
+							//	break;
+							default:
+								Cal_HTML += "color:black;"
+								break;
+						}
+						
+						Cal_HTML += "\">"+thirdPrintDay;
+						
+					}
+					thirdPrintDay++;
+					
+					if (thirdPrintDay > intLastDay) {								// ���� ��¥ ���� ���� ������ ũ�� ������ Ż��
+						Stop_Flag = 1;
+					}
+				}
+				Cal_HTML += "</td>";
+			}
+			Cal_HTML += "</tr>";
+			if (Stop_Flag==1) break;
+		}
+		Cal_HTML += "</table>";
+		document.all.cal.innerHTML = Cal_HTML;
+
+		// �޷� ����� �Ϸ�Ǹ� iframe�� ũ�⸦ �������Ѵ�.
+		var Cal_Table = document.all.Cal_Table;
+		window.resizeTo(158, Cal_Table.offsetHeight);
+	}
+
+	function Show_cal_M(sYear, sMonth) {
+		//var Weekday_name = new Array("��", "��", "ȭ", "��", "��", "��", "��");
+		var intThisYear = new Number(), intThisMonth = new Number()
+		document.all.cal.innerHTML = "";
+		
+		intThisYear = parseInt(sYear);
+		intThisMonth = parseInt(sMonth);
+		
+		if (intThisYear == 0) intThisYear = datToday.getFullYear();				// ���� ���� ���
+		if (intThisMonth == 0) intThisMonth = parseInt(datToday.getMonth())+1;	// �� ���� ������ ���� -1 �� ���� �ŵ��� ����.
+				
+		switch(intThisMonth) {
+			case 1:
+					intPrevYear = intThisYear -1;
+					intNextYear = intThisYear;
+					break;
+			case 12:
+					intPrevYear = intThisYear;
+					intNextYear = intThisYear + 1;
+					break;
+			default:
+					intPrevYear = intThisYear;
+					intNextYear = intThisYear;
+					break;
+		}
+		intPPyear = intThisYear-1
+		intNNyear = intThisYear+1
+
+		Stop_Flag = 0
+
+		Cal_HTML = "<table id=Cal_Table border=0 bgcolor='#f4f4f4' cellpadding=1 cellspacing=1 width=100% onmouseover='doOver()' onmouseout='doOut()' style='font-size : 12;font-family:����;'>";
+		Cal_HTML += "<tr align=center bgcolor='#f4f4f4'>";
+		Cal_HTML += "<td colspan=4 align=center>";
+		Cal_HTML += "<a style='cursor:hand;' OnClick='Show_cal_M("+intPPyear+","+intThisMonth+");'>��</a>&nbsp;&nbsp;";
+		Cal_HTML += intThisYear +"��";
+		Cal_HTML += "&nbsp;&nbsp;<a style='cursor:hand;' OnClick='Show_cal_M("+intNNyear+","+intThisMonth+");'>��</a>";
+		Cal_HTML += "</td></tr>";
+		Cal_HTML += "<tr align=center bgcolor=white>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-01"+" style=\"cursor:Hand;\">1��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-02"+" style=\"cursor:Hand;\">2��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-03"+" style=\"cursor:Hand;\">3��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-04"+" style=\"cursor:Hand;\">4��</td>";
+		Cal_HTML += "</tr>";
+		Cal_HTML += "<tr align=center bgcolor=white>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-05"+" style=\"cursor:Hand;\">5��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-06"+" style=\"cursor:Hand;\">6��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-07"+" style=\"cursor:Hand;\">7��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-08"+" style=\"cursor:Hand;\">8��</td>";
+		Cal_HTML += "</tr>";
+		Cal_HTML += "<tr align=center bgcolor=white>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-09"+" style=\"cursor:Hand;\">9��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-10"+" style=\"cursor:Hand;\">10��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-11"+" style=\"cursor:Hand;\">11��</td>";
+		Cal_HTML += "<td onClick=parent.Calendar_Click(this); title="+intThisYear+"-12"+" style=\"cursor:Hand;\">12��</td>";
+		Cal_HTML += "</tr>";
+		Cal_HTML += "</table>";
+		document.all.cal.innerHTML = Cal_HTML;
+
+		// �޷� ����� �Ϸ�Ǹ� iframe�� ũ�⸦ �������Ѵ�.
+		var Cal_Table = document.all.Cal_Table;
+		window.resizeTo(158, Cal_Table.offsetHeight);
+	}
+//-->
+</SCRIPT>
+</head>
+<body style="margin:2">
+	<div id="cal"></div>		
+</body>
+</html>

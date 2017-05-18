@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script language="JavaScript">
+
+ function random_image()
+ {
+  var img = new Array();
+  // 이곳에 출력할 이미지 주소를 계속해서 아래의 방법처럼 기입해 주세요
+	  for(var i=0; i<5; i++){
+		  img[i] = "img/cam/camimg"+(i+1)+".jpg";
+		  var num = Math.floor( Math.random() * (img.length-1) );
+	  }
+	document.write('<img src="' + img[num] + '" border=0>');
+	  
+ }
+ 
+ random_image();
+
+</script>
+
+</body>
+</html>

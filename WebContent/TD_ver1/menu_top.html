@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+    
+<!-- start: CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/slider1.css" rel="stylesheet">
+	<link href="css/slider2.css" rel="stylesheet">
+	<link href="css/slider3.css" rel="stylesheet">
+	<link href="css/tab.css" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+	
+<style type="text/css">
+*{margin:0px; padding:0px;}
+
+html, body{
+height: 100%;  
+margin:0;
+padding:0;
+background-color:#fff;}
+
+.background{
+height: 100%; }
+
+.pagebox{
+	min-height: 100%; 
+	width: 100%; 
+	height: 100%;
+	padding-top:50px;
+	overflow: auto;
+}
+
+.ppagebox{
+	min-height: 100%; 
+	width: 100%; 
+	height: 100%;
+	overflow: auto;
+}
+
+
+#day_table th, #day_table td{
+	text-align: center;
+}
+</style>
+	<!-- end: CSS -->
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	if($('#userId').val() == "guest")
+	  $('.navbar-right li:eq(0)').hide();
+	else{
+		$('.navbar-right li:eq(1)').hide();
+		$('.navbar-right li:eq(2)').hide();
+	}
+	});
+	
+</script>
+
+</head>
+<body>
+		
+	<!-- start : menu -->
+	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top" >
+        <div class="container navbox" style="z-index:999; width:100%; background-color: #fff; position:fixed; 
+        top:0px; left:0px; padding-left:20px;">
+	            <div class="navbar-header " >
+	                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                    <span class="sr-only">Toggle navigation</span>
+						<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+	                </button>
+	                <a class="navbar-brand page-scroll" href="Main_design.jsp">
+						TRAVEL DIARY
+						<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
+					</a>
+	            </div>
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+	            style="float:left; margin-top:10px">
+	                <ul class="nav navbar-nav navbar-left">
+	                    <li>
+	                        <a class="page-scroll" href="Main_design.jsp#mydiary">MY DIARY</a>
+	                    </li>
+	                    <li>
+	                        <a class="page-scroll" href="Main_design.jsp#days">DAYS</a>
+	                    </li>
+	                    <li>
+	                        <a class="page-scroll" href="Main_design.jsp#mypage">MY PAGE</a>
+	                    </li>
+	                </ul>
+	            </div>
+	            
+	            <div class="collapse navbar-collapse sUser" 
+	            style="float:right; margin-top:10px">
+	                <ul class="nav navbar-nav navbar-right">
+	               		<li>
+	                    	<a onclick="javascript:logout()">LOG OUT</a>
+	                    </li>
+	                    <li>
+	                    	<a onclick="window.location='First.jsp'">LOG IN</a>
+	                    </li>
+	                    <li>
+	                    	<a onclick="window.location='Join.jsp'">JOIN</a>
+	                    </li>
+	                </ul>
+	            </div>
+	            
+        </div>
+    </nav>
+    <!-- end : menu -->
+
+<script type="text/javascript" src="js/isotope.js"></script>
+<script type="text/javascript" src="js/jquery.imagesloaded.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/flexslider.js"></script>
+<script type="text/javascript" src="js/carousel.js"></script>
+<script type="text/javascript" src="js/fancybox.js"></script>
+<script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
+<script type="text/javascript" src="js/jquery.ba-cond.min.js"></script>
+<script type="text/javascript" src="js/jquery.slitslider.js"></script>
+
+<script type="text/javascript" src="js/excanvas.js"></script>
+<script type="text/javascript" src="js/jquery.flot.min.js"></script>
+<script type="text/javascript" src="js/jquery.flot.pie.min.js"></script>
+<script type="text/javascript" src="js/jquery.flot.stack.js"></script>
+<script type="text/javascript" src="js/jquery.flot.resize.min.js"></script>
+<script defer="defer" src="js/custom.js"></script>
+
+<script type="text/javascript">
+
+function logout(){
+	var result = window.confirm('가니?');
+	
+	if(result){
+		window.location='Logout.jsp';
+	}else{}
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

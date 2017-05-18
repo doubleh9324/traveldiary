@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+
+<script type="text/javascript">
+function CheckForm() {
+	//아이디 중복을 위한 아이디 값 체크 
+	//아이디 입력란 가져오기 
+	var id = document.getElementById("inputid").value;
+	
+	if(id.length < 3 || id.length > 12){
+		window.alert("아이디를 3자이상 12자 이하로 입력하세요.");
+		id.focus();
+	
+	}else{
+		if(window.confirm("사용할수 있는 아이디 입니다.\n사용하시겠습니까?")){
+			opener.document.getElementById("inputid").value = 
+					document.getElementById("inputid").value;
+			
+			window.close();
+			
+		}else{
+			document.getElementById("member_id").select();
+		}
+		
+		
+	}	
+}
+
+
+}
+
+
+function JoinPwC(){
+	var pw = document.JoinMain.inputpw.value
+	var pwc =document.JoinMain.inputpwcon.value
+	
+	if(pw == pwc)
+		document.getElementById("ok").value = "~일치~"
+}
+
+</script>
+</head>
+
+<body>
+
+<form action="ex.jsp" name="JoinMain" method="post" onsubmit="return CheckForm();">
+<h1 align="center">회원 가입</h1>
+<table align="center" width="750">
+   <tr>
+      <td align="left" >*이름  </td>
+      <td align="left"><input type="text" name="inputname" id="inputname" width="180">
+      </td>
+   </tr>
+   <tr>
+      <td align="left" >*ID </td>
+      <td align="left"><input type="text" name="inputid" id="inputid" width="180"></td>
+   </tr>
+   <tr>
+      <td align="left" >*비밀번호 </td>
+      <td align="left"><input type="password" name="inputpw" id="inputpw" width="180"></td>
+   </tr>
+    <tr>
+      <td align="left" >*비밀번호 확인 </td>
+      <td align="left"><input type="password" name="inputpwcon" id="inputpwcon" width="180" onKeyUp="JoinPwC()">
+      <input type="text" id="ok" value="같은 비밀번호 입력" readonly style="border: 0px;"></td>
+   </tr>
+    <tr>
+      <td align="left" >*주민번호 </td>
+      <td align="left"><input type="text" name="inputbirth" id="inputbirth" width="180">
+      -
+      <input type="text" name="inputbirth2" id="inputbirth2" width="180"></td>
+   </tr>
+    <tr>
+      <td align="left" >*직업 </td>
+      <td align="left">
+                     <select name="job" id="job" >
+                     <optgruop label="job">
+                     <option value="jobname">직업명</option>
+                     </optgruop>
+                     <option value="student">학생</option>
+                     <option value="teacher">선생</option>
+                     <option value="owner">건물주</option>
+                     <option value="freedom">백수</option>
+                     </select>
+      </td>
+   </tr>   
+    <tr>
+      <td align="left">*성별 </td>
+      <td align="left"><label for="radio-1"><input type="radio" name="gender_wm" id="gender_wm" value="1">여</label>
+      <label for="radio-2"><input type="radio" name="gender_m" id="gender_m" value="0">남</label></td>
+   </tr>
+   <tr>
+      <td align="left">*취미 </td>
+      <td align="left">
+      <label for="check-1"><input type="checkbox" name="reading" id="reading">독서</label>
+      <label for="check-2"><input type="checkbox" name="hiking" id="hiking">등산</label>
+      <label for="check-3"><input type="checkbox" name="fishing" id="fishing">독서</label>
+      </td>
+   </tr>
+   
+   <tr>
+      <td align="left" >*가입동기 </td>
+      <td align="left"><input type="text" style="width:500px; height:350px"></text></td>
+   </tr>
+   <tr>
+      <td align="center">
+      <input type="submit" value="가입">
+      <input type="button" value="취소">
+      </td>
+   </tr>
+
+</table>
+</form>
+</body>
+</html>

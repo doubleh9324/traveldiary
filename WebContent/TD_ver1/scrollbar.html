@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
+
+
+<script>
+(function($){
+    $(window).on("load",function(){
+      $("#vertical-content").mCustomScrollbar({
+        theme:"light-3",
+        scrollButtons:{
+          enable:true
+        }
+      });
+      $("#horizontal-content").mCustomScrollbar({
+        axis:"x",
+        theme:"3d"
+      });
+    });
+  })(jQuery);
+    
+    $("#scroll").mCustomScrollbar({
+        axis:"x" // horizontal scrollbar
+    });
+    
+    $("#scroll").mCustomScrollbar({
+        axis:"yx" // vertical and horizontal scrollbar
+    });
+    
+    $("#scroll").mCustomScrollbar({
+        theme:"dark"
+    });
+</script>
+</head>
+<body>
+<div class="mCustomScrollbar" data-mcs-theme="dark" >
+<div class="content" style="height:2000px;" id="scroll"></div>
+
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+</body>
+</html>

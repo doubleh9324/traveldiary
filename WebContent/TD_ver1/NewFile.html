@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<style type="text/css">
+.progress-bar h5 {
+	margin-bottom:6px; !important
+}
+
+.progress-bar li {
+	margin-bottom:12px; 
+	list-style: none;
+}
+
+
+.meter { 
+	background: rgba(0,0,0,.2); 
+	height: 20px;
+	position: relative;
+	margin-top: -2px;
+}
+
+.meter > span {
+	display: block;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	position: absolute;
+}
+
+.meter > span:after, .animate > span > span {
+	content: "";
+	position: absolute;
+	top: 0; 
+	left: 0; 
+	bottom: 0; 
+	right: 0;
+	overflow: hidden;
+}
+
+.meter > span:after, 
+.animate > span > spans li.current {
+	background: rgb(68,68,68); /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ0NDQ0NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwODA4MDgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(68,68,68,1) 0%, rgba(8,8,8,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(68,68,68,1)), color-stop(100%,rgba(8,8,8,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(68,68,68,1) 0%,rgba(8,8,8,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(68,68,68,1) 0%,rgba(8,8,8,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(68,68,68,1) 0%,rgba(8,8,8,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(68,68,68,1) 0%,rgba(8,8,8,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#080808',GradientType=0 ); /* IE6-8 */
+	-webkit-box-shadow: 0 1px 0 #ffffff, inset rgba(0,0,0,0.4) 0px 1px 1px !important;
+	   -moz-box-shadow: 0 1px 0 #ffffff, inset rgba(0,0,0,0.4) 0px 1px 1px !important;
+			box-shadow: 0 1px 0 #ffffff, inset rgba(0,0,0,0.4) 0px 1px 1px !important;
+}
+</style>
+</head>
+<body>
+<div id="about" class="container color yellow ppagebox">
+	
+		<!-- start : navigation -->
+		<!-- end : navigation -->
+	
+			<!-- start : Wrapper -->
+			<div class="wrapper span12">
+			
+			<!-- start : Page Title -->
+			<div id="page-title">
+				<div id="page-title-inner">
+				<h2><span>My Days</span></h2>
+				</div>				
+			</div>
+			<!-- end : Page Title -->
+<!-- start: Row -->
+			<div class="row-fluid">		
+				<!-- 확인하고 지우기 -->
+				<div class="span12">
+					
+					<!-- start: Skills -->
+			       	<h3>Achievement</h3>
+			       	<ul class="progress-bar">
+						<li>
+			            	<h5> 여행완성 ( <%=prog %>% ) </h5>
+			          	</li>
+			        	<li>
+			            	<div class="meter"><span style="width: 80%"></span></div>
+			          	</li>
+			      	</ul>
+			      	<!-- end: Skills -->
+			      	
+		      	</div>
+    	  	</div>
+      		<!-- end : Row -->
+      		
+      		</div>
+      		
+      		</div>
+</body>
+</html>
